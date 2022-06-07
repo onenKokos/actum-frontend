@@ -1,7 +1,12 @@
 import type { NextPage } from "next";
 
-type IndexPageProps = {};
-
-const IndexPage: NextPage<IndexPageProps> = () => <div>Index page :3</div>;
+const IndexPage: NextPage = () => (
+    <div>
+        <>
+            Index page :3
+            {console.log("cunt")}
+        </>
+    </div>
+);
 
 export default IndexPage;
