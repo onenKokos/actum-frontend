@@ -4,6 +4,7 @@ export const globalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
         max-width: 100vw;
+        font-family: 'Archivo', sans-serif;
     }
     *,
     *::after,
