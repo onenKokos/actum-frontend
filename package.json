@@ -34,27 +34,33 @@
         "next": "^12.1.6",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
+        "styled-components": "^5.3.5",
         "typescript": "^4.7.3"
     },
     "devDependencies": {
-        "@types/node": "^17.0.40",
-        "@types/react": "^18.0.12",
         "@graphql-codegen/cli": "2.6.2",
         "@graphql-codegen/introspection": "2.1.1",
         "@graphql-codegen/typescript": "2.4.11",
         "@graphql-codegen/typescript-document-nodes": "2.2.11",
         "@graphql-codegen/typescript-mongodb": "2.3.9",
         "@graphql-codegen/typescript-resolvers": "2.6.4",
+        "@types/node": "^17.0.40",
+        "@types/react": "^18.0.12",
+        "@types/styled-components": "^5.1.25",
+        "@typescript-eslint/eslint-plugin": "^5.27.0",
+        "@typescript-eslint/parser": "^5.27.0",
+        "babel-plugin-styled-components": "^2.0.7",
         "eslint": "^8.16.0",
         "eslint-config-prettier": "^8.5.0",
         "husky": "^8.0.1",
-        "prettier": "^2.6.2",
-        "ts-node-dev": "^2.0.0",
         "lint-staged": "^13.0.0",
-        "@typescript-eslint/eslint-plugin": "^5.27.0",
-        "@typescript-eslint/parser": "^5.27.0"
+        "prettier": "^2.6.2",
+        "ts-node-dev": "^2.0.0"
     },
     "engines": {
         "node": "16.x"
+    },
+    "resolutions": {
+        "styled-components": "^5"
     }
 }
