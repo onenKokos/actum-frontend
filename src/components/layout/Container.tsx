@@ -7,8 +7,9 @@ const Root = styled.div`
 
 type ContainerProps = {
     children: ReactNode;
+    className?: string;
 };
 
-export const Container: FC<ContainerProps> = ({ children }) => (
-    <Root>{children}</Root>
+export const Container: FC<ContainerProps> = ({ children, className }) => (
+    <Root className={className}>{children}</Root>
 );
