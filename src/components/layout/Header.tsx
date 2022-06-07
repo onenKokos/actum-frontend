@@ -3,8 +3,8 @@ import type { FC } from "react";
 import Link from "next/link";
 
 import { Container } from "./Container";
+import { Cart } from "./Cart";
 import Logo from "../../../public/logo.svg";
-import Cart from "../../../public/icons/cart.svg";
 
 const Root = styled.header`
     width: 100%;

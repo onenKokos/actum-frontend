@@ -5,4 +5,7 @@ export const theme = {
         white: "#fff",
         font: "#656565",
     },
+    breakpoints: {
+        bg: "90em",
+    },
 };
