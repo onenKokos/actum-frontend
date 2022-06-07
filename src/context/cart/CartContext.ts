@@ -12,9 +12,11 @@ type CartContextState = {
 const defaultCartContextState: CartContextState = {
     products: [],
     isCartOpen: false,
+    /* eslint-disable @typescript-eslint/no-empty-function */
     toggleCart: () => {},
     clearCart: () => {},
     addItem: () => {},
+    /* eslint-enable */
 };
 
 export const CartContext = createContext<CartContextState>(

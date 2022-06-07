@@ -2,22 +2,37 @@ import styled from "styled-components";
 import type { FC } from "react";
 
 import CartIcon from "../../../../public/icons/cart.svg";
+import CloseIcon from "../../../../public/icons/close.svg";
 import { useCartContext } from "../../../hooks";
+import { Button } from "../../Button";
 
-const CartRoot = styled.button`
+const CartRoot = styled.div`
+    position: relative;
+`;
+
+const CartButton = styled(CartIcon)`
     display: block;
     width: 3.2rem;
     height: 3.2rem;
     background-color: inherit;
     border: none;
     cursor: pointer;
-    position: relative;
     padding: 0;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         width: 5.4rem;
         height: 5.4rem;
     }
+`;
+
+const CloseButton = styled(CloseIcon)`
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+    margin-bottom: 2.4rem;
 `;
 
 const CartCounter = styled.span<{ isVisible: boolean }>`
@@ -36,46 +51,36 @@ const CartCounter = styled.span<{ isVisible: boolean }>`
 `;
 
 const CartOverlay = styled.div<{ isOpen: boolean }>`
-    @media screen and (max-width: calc(${({ theme }) =>
-        theme.breakpoints.bg})) {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 40;
-        pointer-events: none;
-        display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-    }
+    position: fixed;
+    background-color: ${({ theme }) => theme.colors.white}};
+    padding: 2.4rem;
+    left: 0;
+    right: 0;
+    border: 4px solid ${({ theme }) => theme.colors.muted};
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    flex-direction: column;
+    z-index: 20;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         position: absolute;
-        background-color: ${({ theme }) => theme.colors.white}};
-        padding: 6.4rem 2.4rem 2.4rem 2.4rem;
-        width: 44.3rem;
-        right: 0;
-        border: 4px solid ${({ theme }) => theme.colors.muted};
+        left: unset;
+        width: 44.5rem;
     }
 `;
 
-const CloseButton = styled.button``;
-
-const CartContent = styled.div``;
-
 export const Cart: FC = () => {
-    const { isCartOpen, toggleCart, products } = useCartContext();
+    const { isCartOpen, toggleCart, products, clearCart } = useCartContext();
 
     return (
-        <CartRoot onClick={toggleCart}>
-            <CartIcon />
+        <CartRoot>
+            <CartButton onClick={toggleCart} />
             <CartCounter isVisible={products.length > 0}>
                 {products.length}
             </CartCounter>
-            <CartOverlay isOpen={isCartOpen} />
+            <CartOverlay isOpen={isCartOpen}>
+                <CloseButton onClick={toggleCart} />
+                <Button variant="light" onClick={clearCart} text="Clear" />
+            </CartOverlay>
         </CartRoot>
     );
 };
