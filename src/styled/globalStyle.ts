@@ -21,7 +21,7 @@ export const globalStyle = createGlobalStyle`
         max-width: 100vw;
         display: flex;
         flex-direction: column;
-        background-color: hotpink;
+        background-color: ${({ theme }) => theme.colors.background};
         color: white;
     }
 `;

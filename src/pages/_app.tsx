@@ -7,8 +7,8 @@ import { PageLayout } from "../components/layout";
 const CustomApp: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
-            <GlobalStyle />
             <ThemeProvider theme={theme}>
+                <GlobalStyle />
                 <PageLayout>
                     <Component {...pageProps} />
                 </PageLayout>
