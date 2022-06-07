@@ -7,6 +7,9 @@ export const theme = {
         background: "#fff",
     },
     breakpoints: {
+        // This is the worst solution ever
+        // Cant think of anything better now, maybe use calc or something
+        bgDown: "89em",
         bg: "90em",
     },
 };
