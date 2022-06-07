@@ -1,0 +1,6 @@
+{
+  "*.{ts,tsx}": [
+    "prettier --write \"src/**/*.+(js|ts|json)\"",
+    "eslint . --ext .ts"
+  ]
+}
