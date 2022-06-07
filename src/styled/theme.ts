@@ -4,6 +4,7 @@ export const theme = {
         muted: "#E4E4E4",
         white: "#fff",
         font: "#656565",
+        background: "#fff",
     },
     breakpoints: {
         bg: "90em",

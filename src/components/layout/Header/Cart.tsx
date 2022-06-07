@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import type { FC } from "react";
 
-import CartIcon from "../../../public/icons/cart.svg";
+import CartIcon from "../../../../public/icons/cart.svg";
 
 const CartRoot = styled.button`
     display: block;
@@ -19,7 +19,7 @@ const CartRoot = styled.button`
     }
 `;
 
-const CartCounter = styled.div<{ display: boolean }>`
+const CartCounter = styled.span<{ isVisible: boolean }>`
     position: absolute;
     bottom: -0.4rem;
     right: -0.4rem;
@@ -27,7 +27,7 @@ const CartCounter = styled.div<{ display: boolean }>`
     color: ${({ theme }) => theme.colors.white};
     padding: 0.4rem;
     border-radius: 8px;
-    display: ${({ display }) => (display ? "block" : "none")};
+    display: ${({ isVisible }) => (isVisible ? "block" : "none")};
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         padding: 0.6rem;
@@ -37,6 +37,6 @@ const CartCounter = styled.div<{ display: boolean }>`
 export const Cart: FC = () => (
     <CartRoot>
         <CartIcon />
-        <CartCounter display={true}>4</CartCounter>
+        <CartCounter isVisible={true}>4</CartCounter>
     </CartRoot>
 );
