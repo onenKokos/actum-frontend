@@ -1,0 +1,8 @@
+# NOde modules
+node_modules
+
+# Next build folder
+.next
+
+# Vercel stuff for deployment
+.vercel
