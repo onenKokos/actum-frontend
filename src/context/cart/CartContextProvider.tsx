@@ -33,6 +33,7 @@ export const CartContextProvider: FC<CartContextProps> = ({ children }) => {
             const newItems = [...items, payload];
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newItems));
             setItems(newItems);
+            setIsOpen(true);
         },
         [items]
     );
