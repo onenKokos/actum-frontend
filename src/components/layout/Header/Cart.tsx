@@ -74,6 +74,7 @@ const CartItem = styled.div`
     display: flex;
     padding-bottom: 2.4rem;
     align-items: center;
+    gap: 0.8rem;
 
     & > div {
         width: 50%;

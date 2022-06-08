@@ -30,14 +30,18 @@ const FeaturedProductButton = styled(Button)`
 const SectionWrapper = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         display: grid;
-        grid-template-areas: "a a" "b ." "c .";
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "a b"
+            "c b";
 
         & > div:first-child {
-            grid-area: a;
+            grid-area: b;
         }
 
         & > div:nth-child(2) {
-            grid-area: b;
+            grid-area: a;
         }
 
         & > div:nth-child(3) {
