@@ -1,7 +1,8 @@
-import type { NextPage } from "next";
 import Head from "next/head";
+import type { NextPage } from "next";
 
 import { FeaturedProduct } from "../components/FeaturedProduct";
+import { ProductSection } from "../components/ProductSection";
 
 const IndexPage: NextPage = () => (
     <>
@@ -9,6 +10,7 @@ const IndexPage: NextPage = () => (
             <title>Actum Digital - Frontend Task</title>
         </Head>
         <FeaturedProduct />
+        <ProductSection />
     </>
 );
 

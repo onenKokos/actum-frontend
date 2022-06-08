@@ -22,6 +22,6 @@ export const globalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         background-color: ${({ theme }) => theme.colors.background};
-        color: white;
+        color: ${({ theme }) => theme.colors.font};
     }
 `;
