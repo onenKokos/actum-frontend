@@ -5,6 +5,7 @@ import CartIcon from "../../../../public/icons/cart.svg";
 import CloseIcon from "../../../../public/icons/close.svg";
 import { useCartContext } from "../../../hooks";
 import { Button } from "../../Button";
+import { Product } from "../../../types";
 
 const CartRoot = styled.div`
     position: relative;
@@ -44,13 +45,14 @@ const CartCounter = styled.span<{ isVisible: boolean }>`
     padding: 0.4rem;
     border-radius: 8px;
     display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+    pointer-events: none;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         padding: 0.6rem;
     }
 `;
 
-const CartOverlay = styled.div<{ isOpen: boolean }>`
+const CartContainer = styled.div<{ isOpen: boolean }>`
     position: fixed;
     background-color: ${({ theme }) => theme.colors.white}};
     padding: 2.4rem;
@@ -68,6 +70,55 @@ const CartOverlay = styled.div<{ isOpen: boolean }>`
     }
 `;
 
+const CartItem = styled.div`
+    display: flex;
+    padding-bottom: 2.4rem;
+    align-items: center;
+
+    & > div {
+        width: 50%;
+        height: 16.8rem;
+    }
+
+    &:last-of-type {
+        margin-bottom: 2.4rem;
+        border-bottom: 1px solid ${({ theme }) => theme.colors.font};
+    }
+`;
+
+const ProductInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const ProductImage = styled.div`
+    display: block;
+    width: 50%;
+    height: 9.2rem;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+`;
+
+const ProductPrice = styled.div`
+    font-size: 2.9rem;
+    weight: 400;
+    color: ${({ theme }) => theme.colors.font};
+    line-height: 3.2rem;
+`;
+
+const ProductName = styled.span`
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.black};
+    margin-bottom: 2rem;
+`;
+
 export const Cart: FC = () => {
     const { isCartOpen, toggleCart, products, clearCart } = useCartContext();
 
@@ -77,10 +128,30 @@ export const Cart: FC = () => {
             <CartCounter isVisible={products.length > 0}>
                 {products.length}
             </CartCounter>
-            <CartOverlay isOpen={isCartOpen}>
+            <CartContainer isOpen={isCartOpen}>
                 <CloseButton onClick={toggleCart} />
+                {products.map(
+                    ({
+                        name,
+                        price,
+                        currency,
+                        image: { alt, src },
+                    }: Product) => (
+                        <CartItem key={`k__${name}`}>
+                            <ProductInfo>
+                                <ProductName>{name}</ProductName>
+                                <ProductPrice>{`${
+                                    currency === "USD" ? "$" : "€"
+                                } ${price}`}</ProductPrice>
+                            </ProductInfo>
+                            <ProductImage>
+                                <img src={src} alt={alt} />
+                            </ProductImage>
+                        </CartItem>
+                    )
+                )}
                 <Button variant="light" onClick={clearCart} text="Clear" />
-            </CartOverlay>
+            </CartContainer>
         </CartRoot>
     );
 };
