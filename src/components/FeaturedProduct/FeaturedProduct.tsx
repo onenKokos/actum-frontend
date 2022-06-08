@@ -10,6 +10,12 @@ import { Recommended } from "./Recommended";
 import { useCartContext } from "../../hooks";
 import { Category, Currency } from "../../types";
 
+const Root = styled.section`
+    padding-bottom: 6rem;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.font};
+    margin-bottom: 4.8rem;
+`;
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -69,7 +75,7 @@ export const FeaturedProduct: FC = () => {
     };
 
     return (
-        <section>
+        <Root>
             <Wrapper>
                 <H1 text="Recycled Plastic" />
                 <FeaturedProductButton
@@ -111,6 +117,6 @@ export const FeaturedProduct: FC = () => {
                     items={["Weight: 2340g/m2", "Thickness: 3cm"]}
                 />
             </SectionWrapper>
-        </section>
+        </Root>
     );
 };
