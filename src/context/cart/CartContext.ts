@@ -6,7 +6,7 @@ type CartContextState = {
     isCartOpen: boolean;
     toggleCart: () => void;
     clearCart: () => void;
-    addItem: (...args) => void;
+    addItem: (product: Product) => void;
 };
 
 const defaultCartContextState: CartContextState = {

@@ -26,6 +26,10 @@ export const CartContextProvider: FC<CartContextProps> = ({ children }) => {
 
     const addItem = useCallback(
         (payload: Product) => {
+            if (products.some(({ name }: Product) => name === payload.name)) {
+                return;
+            }
+
             const newItems = [...items, payload];
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newItems));
             setItems(newItems);
@@ -36,6 +40,7 @@ export const CartContextProvider: FC<CartContextProps> = ({ children }) => {
     const clearCart = useCallback(() => {
         localStorage.removeItem(LOCAL_STORAGE_KEY);
         setItems([]);
+        setIsOpen(false);
     }, [items]);
 
     const toggleCart = useCallback(() => {

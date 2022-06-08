@@ -7,6 +7,8 @@ import { Hero } from "./Hero";
 import { About } from "./About";
 import { Details } from "./Details";
 import { Recommended } from "./Recommended";
+import { useCartContext } from "../../hooks";
+import { Category, Currency } from "../../types";
 
 const Wrapper = styled.div`
     display: flex;
@@ -45,12 +47,29 @@ const SectionWrapper = styled.div`
 `;
 
 export const FeaturedProduct: FC = () => {
+    const { addItem } = useCartContext();
+
+    const handleClick = () => {
+        addItem({
+            bestseller: false,
+            category: Category.Plastic,
+            currency: Currency.Usd,
+            price: 101,
+            featured: true,
+            image: {
+                src: "/img/feature-desktop.png",
+                alt: "Wow such picture",
+            },
+            name: "Recycled Plastic",
+        });
+    };
+
     return (
         <section>
             <Wrapper>
                 <H1 text="Recycled Plastic" />
                 <FeaturedProductButton
-                    onClick={() => console.log("Add to cart!")}
+                    onClick={handleClick}
                     variant="dark"
                     text="Add to cart"
                 />
