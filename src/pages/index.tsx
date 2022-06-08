@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import { FeaturedProduct } from "../components/FeaturedProduct";
+
 const IndexPage: NextPage = () => (
     <>
         <Head>
             <title>Actum Digital - Frontend Task</title>
         </Head>
-        <div>
-            <>Index page :3</>
-        </div>
+        <FeaturedProduct />
     </>
 );
 

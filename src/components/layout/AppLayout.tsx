@@ -4,17 +4,19 @@ import styled from "styled-components";
 import { Header } from "./Header/Header";
 import { Container } from "./Container";
 
-const Root = styled.main``;
-
 type PageLayoutProps = {
     children?: ReactNode;
 };
 
+const Root = styled(Container)`
+    padding-top: 0;
+`;
+
 export const PageLayout: FC<PageLayoutProps> = ({ children }) => (
     <>
         <Header />
-        <Root>
-            <Container>{children}</Container>
-        </Root>
+        <main>
+            <Root>{children}</Root>
+        </main>
     </>
 );
