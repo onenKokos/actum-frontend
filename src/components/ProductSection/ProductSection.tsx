@@ -6,6 +6,7 @@ import { MobileFilterToggle } from "./MobileFilterToggle";
 import { Sort } from "./Sort";
 import { DesktopFilters } from "./DesktopFilters";
 import { Products } from "./Products";
+import { MobileFilters } from "./MobileFilters";
 
 const Root = styled.section``;
 
@@ -35,5 +36,7 @@ export const ProductSection: FC = () => (
             <DesktopFilters headingOne="Materials" headingTwo="Price range" />
             <Products />
         </ContentWrapper>
+
+        <MobileFilters headingOne="Filter" headingTwo="Price range" />
     </Root>
 );

@@ -12,7 +12,7 @@ export const FilterContextProvider: FC<FilterContextProps> = ({ children }) => {
     const [materials, setMaterials] = useState<Materials>(
         defaultMaterialsState
     );
-    const [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(5);
     const [expanded, setIsExpanded] = useState<boolean>(false);
 
     const isMobileFilterVisible = useMemo(() => {
