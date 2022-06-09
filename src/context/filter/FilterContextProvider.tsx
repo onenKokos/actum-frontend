@@ -13,6 +13,15 @@ export const FilterContextProvider: FC<FilterContextProps> = ({ children }) => {
         defaultMaterialsState
     );
     const [price, setPrice] = useState<number>(0);
+    const [expanded, setIsExpanded] = useState<boolean>(false);
+
+    const isMobileFilterVisible = useMemo(() => {
+        return expanded;
+    }, [expanded]);
+
+    const toggleMobileFilter = useCallback(() => {
+        setIsExpanded(!expanded);
+    }, [expanded]);
 
     const priceRange = useMemo(() => {
         return price;
@@ -38,7 +47,14 @@ export const FilterContextProvider: FC<FilterContextProps> = ({ children }) => {
 
     return (
         <FilterContext.Provider
-            value={{ priceRange, activeFilters, setPriceRange, setFilters }}
+            value={{
+                priceRange,
+                activeFilters,
+                setPriceRange,
+                setFilters,
+                isMobileFilterVisible,
+                toggleMobileFilter,
+            }}
         >
             {children}
         </FilterContext.Provider>
