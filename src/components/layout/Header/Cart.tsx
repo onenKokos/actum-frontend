@@ -58,6 +58,12 @@ const CartContainer = styled.div<{ isOpen: boolean }>`
     padding: 2.4rem;
     left: 0;
     right: 0;
+    top: 0;
+
+    height: auto;
+    max-height: 100vh;
+    overflowY: scroll;
+
     border: 4px solid ${({ theme }) => theme.colors.muted};
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     flex-direction: column;

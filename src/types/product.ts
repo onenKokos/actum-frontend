@@ -2,6 +2,7 @@ export enum Category {
     Glass = "GLASS",
     Plastic = "PLASTIC",
     Steel = "STEEL",
+    Brick = "BRICK",
 }
 
 export enum Currency {
