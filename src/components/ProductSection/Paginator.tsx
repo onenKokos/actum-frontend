@@ -19,7 +19,7 @@ const Root = styled.div`
     gap: 2rem;
 `;
 
-const Right = styled.button`
+const Right = styled.button<{ isHidden: boolean }>`
     background-color: inherit;
     border: none;
     padding: 0;
@@ -27,6 +27,7 @@ const Right = styled.button`
     width: 1.3rem;
     height: 2rem;
     cursor: pointer;
+    visibility: ${({ isHidden }) => (isHidden ? "hidden" : "visible")};
 `;
 
 const Left = styled(Right)`
@@ -66,12 +67,19 @@ export const Paginator: FC<PaginatorProps> = ({
 
     return (
         <Root>
-            <Left onClick={() => handleChange(activeIndex - 1)}>
+            <Left
+                onClick={() => handleChange(activeIndex - 1)}
+                isHidden={activeIndex === 0}
+            >
                 <CaretIcon />
             </Left>
+
             {numberButtons.map((btn) => btn)}
 
-            <Right onClick={() => handleChange(activeIndex + 1)}>
+            <Right
+                onClick={() => handleChange(activeIndex + 1)}
+                isHidden={!(activeIndex < numberOfPages - 1)}
+            >
                 <CaretIcon />
             </Right>
         </Root>
