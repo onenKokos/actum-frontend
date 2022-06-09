@@ -211,9 +211,11 @@ const ContentWrapper = styled.div`
 export const ProductSection: FC = () => {
     const { isMobile } = useIsMobile();
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    // const [activeProducts, setActiveProducts] = useState<Product[]>(products);
+    const numberOfProducts = isMobile ? 4 : 6;
 
     const clickHandler = (input: number) => {
-        if (input > -1 && input < products.length / (isMobile ? 4 : 6)) {
+        if (input > -1 && input < products.length / numberOfProducts) {
             setActiveIndex(input);
         }
     };
@@ -243,7 +245,7 @@ export const ProductSection: FC = () => {
 
             <Paginator
                 activeIndex={activeIndex}
-                numberOfPages={products.length / (isMobile ? 4 : 6)}
+                numberOfPages={products.length / numberOfProducts}
                 handleChange={clickHandler}
             />
 
