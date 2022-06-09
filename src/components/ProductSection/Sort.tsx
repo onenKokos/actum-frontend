@@ -51,7 +51,7 @@ export const Sort: FC = () => {
             <Text>Sort by</Text>
             <Select onChange={handleChange}>
                 <option value={"price"}>Price</option>
-                <option value={"alphabetically"}>Name</option>
+                <option value={"name"}>Name</option>
             </Select>
         </FilterRoot>
     );

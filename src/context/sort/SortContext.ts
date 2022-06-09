@@ -5,7 +5,7 @@ export enum Order {
     DESCENDING = "descending",
 }
 
-export type Attributes = "price" | "alphabetically";
+export type Attributes = "price" | "name";
 
 type SortContextState = {
     order: Order;
