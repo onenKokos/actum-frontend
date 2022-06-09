@@ -14,12 +14,22 @@ const Root = styled.div`
 
 type ProductsProps = {
     products: Product[];
+    numberOfProducts: number;
+    paginatorOffset: number;
 };
 
-export const Products: FC<ProductsProps> = ({ products }) => {
+export const Products: FC<ProductsProps> = ({
+    products,
+    paginatorOffset,
+    numberOfProducts,
+}) => {
+    const startIndex = paginatorOffset * numberOfProducts;
+    const endIndex = (paginatorOffset + 1) * numberOfProducts;
+    const productsToShow = products.slice(startIndex, endIndex);
+
     return (
         <Root>
-            {products.map((product: Product) => (
+            {productsToShow.map((product: Product) => (
                 <ProductCard
                     product={product}
                     key={`k__${product.name}--${product.price}`}

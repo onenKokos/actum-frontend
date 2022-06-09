@@ -26,14 +26,17 @@ const CartButton = styled(CartIcon)`
     }
 `;
 
-const CloseButton = styled(CloseIcon)`
+const CloseButton = styled.button`
     display: inline-block;
     margin-left: auto;
-    margin-right: 0;
+    margin-bottom: 2.4rem;
     width: 3.2rem;
     height: 3.2rem;
     cursor: pointer;
-    margin-bottom: 2.4rem;
+    background-color: inherit;
+    padding: 0;
+    border: none;
+    outline: none;
 `;
 
 const CartCounter = styled.span<{ isVisible: boolean }>`
@@ -62,7 +65,7 @@ const CartContainer = styled.div<{ isOpen: boolean }>`
 
     height: auto;
     max-height: 100vh;
-    overflowY: scroll;
+    overflow: scroll;
 
     border: 4px solid ${({ theme }) => theme.colors.muted};
     display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
@@ -127,16 +130,26 @@ const ProductName = styled.span`
 `;
 
 export const Cart: FC = () => {
-    const { isCartOpen, toggleCart, products, clearCart } = useCartContext();
+    const { isCartOpen, setIsCartOpen, products, clearCart } = useCartContext();
+
+    const handleOpen = () => {
+        setIsCartOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsCartOpen(false);
+    };
 
     return (
         <CartRoot>
-            <CartButton onClick={toggleCart} />
+            <CartButton onClick={handleOpen} />
             <CartCounter isVisible={products.length > 0}>
                 {products.length}
             </CartCounter>
             <CartContainer isOpen={isCartOpen}>
-                <CloseButton onClick={toggleCart} />
+                <CloseButton onClick={handleClose}>
+                    <CloseIcon />
+                </CloseButton>
                 {products.map(
                     ({
                         name,

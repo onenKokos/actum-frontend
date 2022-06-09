@@ -17,6 +17,14 @@ const CardImageContainer = styled.div`
     overflow: hidden;
     margin-bottom: 1rem;
 
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
+        &:hover {
+            button {
+                transform: translateY(0);
+            }
+        }
+    }
+
     img {
         width: 100%;
         height: 100%;
@@ -43,6 +51,13 @@ const CartButton = styled(Button)`
     position: absolute;
     left: 0;
     bottom: 0;
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
+        padding-left: 2.4rem;
+        padding-right: 2.4rem;
+
+        transform: translateY(6.3rem);
+    }
 `;
 
 const Category = styled.span`
@@ -64,7 +79,7 @@ type ProductCardProps = {
 export const ProductCard: FC<ProductCardProps> = ({
     product: { category, bestseller, name, image, price, currency, ...rest },
 }) => {
-    const { addItem, toggleCart } = useCartContext();
+    const { addItem, setIsCartOpen } = useCartContext();
 
     const handleClick = () => {
         addItem({
@@ -76,7 +91,7 @@ export const ProductCard: FC<ProductCardProps> = ({
             price,
             currency,
         });
-        toggleCart();
+        setIsCartOpen(true);
     };
 
     return (
