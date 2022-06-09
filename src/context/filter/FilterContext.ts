@@ -6,11 +6,20 @@ export const defaultMaterialsState = {
     brick: false,
     glass: false,
     steel: false,
-    carbonFloor: false,
+    carbonFiber: false,
     copper: false,
 };
 
 export type Materials = typeof defaultMaterialsState;
+
+export const defaultPriceRanges = [
+    { key: "lessThanTwenty", title: "Lower than $20", index: 0 },
+    { key: "twentyToHundred", title: "$20 - $100", index: 1 },
+    { key: "hundredToTwoHundred", title: "$100 - $200", index: 2 },
+    { key: "moreThanTwoHundred", title: "More than $200", index: 3 },
+];
+
+export type PriceRange = typeof defaultPriceRanges;
 
 type FilterContextState = {
     activeFilters: Materials;

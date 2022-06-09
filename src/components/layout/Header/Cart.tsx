@@ -143,7 +143,7 @@ export const Cart: FC = () => {
                                 <ProductName>{name}</ProductName>
                                 <ProductPrice>{`${
                                     currency === "USD" ? "$" : "€"
-                                } ${price}`}</ProductPrice>
+                                } ${price.toFixed(2)}`}</ProductPrice>
                             </ProductInfo>
                             <ProductImage>
                                 <img src={src} alt={alt} />

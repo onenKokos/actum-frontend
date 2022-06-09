@@ -4,7 +4,11 @@ import type { FC } from "react";
 import type { AppProps } from "next/app";
 
 import { PageLayout } from "../components/layout";
-import { CartContextProvider, SortContextProvider } from "../context";
+import {
+    CartContextProvider,
+    SortContextProvider,
+    FilterContextProvider,
+} from "../context";
 
 const CustomApp: FC<AppProps> = ({ Component, pageProps }) => {
     return (
@@ -13,9 +17,11 @@ const CustomApp: FC<AppProps> = ({ Component, pageProps }) => {
                 <GlobalStyle />
                 <CartContextProvider>
                     <SortContextProvider>
-                        <PageLayout>
-                            <Component {...pageProps} />
-                        </PageLayout>
+                        <FilterContextProvider>
+                            <PageLayout>
+                                <Component {...pageProps} />
+                            </PageLayout>
+                        </FilterContextProvider>
                     </SortContextProvider>
                 </CartContextProvider>
             </ThemeProvider>
