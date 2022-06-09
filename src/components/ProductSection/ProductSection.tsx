@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import type { FC } from "react";
 
 import { ProductsHeading } from "./ProductsHeading";
@@ -7,23 +8,13 @@ import { Sort } from "./Sort";
 import { DesktopFilters } from "./DesktopFilters";
 import { Products } from "./Products";
 import { MobileFilters } from "./MobileFilters";
+import { Paginator } from "./Paginator";
+import { useIsMobile } from "../../hooks";
 
 // "MOCK"
 import { Product, Category, Currency } from "../../types";
 
 const products: Product[] = [
-    // {
-    //     bestseller: true,
-    //     category: Category.Glass,
-    //     currency: Currency.Usd,
-    //     price: 33.78,
-    //     featured: false,
-    //     image: {
-    //         alt: "glass",
-    //         src: "/img/product-glass.png",
-    //     },
-    //     name: "Reinforced",
-    // },
     {
         name: "Reinforced",
         category: Category.Glass,
@@ -96,6 +87,78 @@ const products: Product[] = [
         bestseller: false,
         featured: false,
     },
+    {
+        name: "Reinforced-x",
+        category: Category.Glass,
+        price: 33.78,
+        currency: Currency.Usd,
+        image: {
+            src: "/img/product-glass__reinforced.png",
+            alt: "Reinforced",
+        },
+        bestseller: true,
+        featured: false,
+    },
+    {
+        name: "Shape-x",
+        category: Category.Steel,
+        price: 93.89,
+        currency: Currency.Usd,
+        image: {
+            src: "/img/product-steel__shape.png",
+            alt: "shape-1",
+        },
+        bestseller: false,
+        featured: false,
+    },
+    {
+        name: "Wave-x",
+        category: Category.Steel,
+        price: 120.21,
+        currency: Currency.Usd,
+        image: {
+            src: "/img/product-steel__wave.png",
+            alt: "wave",
+        },
+        bestseller: false,
+        featured: false,
+    },
+    {
+        name: "Colored-x",
+        category: Category.Glass,
+        price: 101,
+        currency: Currency.Usd,
+        image: {
+            src: "/img/product-glass__colored.png",
+            alt: "shape-2",
+        },
+        bestseller: false,
+        featured: false,
+    },
+    {
+        name: "Red-x",
+        category: Category.Brick,
+        price: 101.0,
+        currency: Currency.Usd,
+        image: {
+            alt: "brick-red",
+            src: "/img/product-brick__red.png",
+        },
+        bestseller: false,
+        featured: false,
+    },
+    {
+        name: "Pastel-x",
+        category: Category.Brick,
+        price: 101.0,
+        currency: Currency.Usd,
+        image: {
+            alt: "brick-red",
+            src: "/img/product-brick__pastel.png",
+        },
+        bestseller: false,
+        featured: false,
+    },
     // {
     //     name: "Recycled Plastic",
     //     category: Category.Plastic,
@@ -145,19 +208,46 @@ const ContentWrapper = styled.div`
     }
 `;
 
-export const ProductSection: FC = () => (
-    <Root>
-        <TopContainer>
-            <ProductsHeading heading="Materials" subheading="Premium Photos" />
-            <Sort />
-            <MobileFilterToggle />
-        </TopContainer>
+export const ProductSection: FC = () => {
+    const { isMobile } = useIsMobile();
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
-        <ContentWrapper>
-            <DesktopFilters headingOne="Materials" headingTwo="Price range" />
-            <Products products={products} />
-        </ContentWrapper>
+    const clickHandler = (input: number) => {
+        if (input > -1 && input < products.length / (isMobile ? 4 : 6)) {
+            setActiveIndex(input);
+        }
+    };
 
-        <MobileFilters headingOne="Filter" headingTwo="Price range" />
-    </Root>
-);
+    return (
+        <Root>
+            <TopContainer>
+                <ProductsHeading
+                    heading="Materials"
+                    subheading="Premium Photos"
+                />
+                <Sort />
+                <MobileFilterToggle />
+            </TopContainer>
+
+            <ContentWrapper>
+                <DesktopFilters
+                    headingOne="Materials"
+                    headingTwo="Price range"
+                />
+                <Products
+                    products={products}
+                    paginatorOffset={activeIndex}
+                    numberOfProducts={isMobile ? 4 : 6}
+                />
+            </ContentWrapper>
+
+            <Paginator
+                activeIndex={activeIndex}
+                numberOfPages={products.length / (isMobile ? 4 : 6)}
+                handleChange={clickHandler}
+            />
+
+            <MobileFilters headingOne="Filter" headingTwo="Price range" />
+        </Root>
+    );
+};

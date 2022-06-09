@@ -44,9 +44,12 @@ export const CartContextProvider: FC<CartContextProps> = ({ children }) => {
         setIsOpen(false);
     }, [items]);
 
-    const toggleCart = useCallback(() => {
-        setIsOpen(!isOpen);
-    }, [isOpen]);
+    const setIsCartOpen = useCallback(
+        (payload: boolean) => {
+            setIsOpen(payload);
+        },
+        [isOpen]
+    );
 
     const products = useMemo(() => {
         return items;
@@ -58,7 +61,7 @@ export const CartContextProvider: FC<CartContextProps> = ({ children }) => {
 
     return (
         <CartContext.Provider
-            value={{ products, isCartOpen, toggleCart, clearCart, addItem }}
+            value={{ products, isCartOpen, setIsCartOpen, clearCart, addItem }}
         >
             {children}
         </CartContext.Provider>
