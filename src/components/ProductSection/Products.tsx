@@ -3,6 +3,7 @@ import type { FC } from "react";
 
 import { ProductCard } from "./ProductCard";
 import { Product } from "../../types";
+import { useActiveProductsContext } from "../../hooks";
 
 const Root = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
@@ -19,10 +20,11 @@ type ProductsProps = {
 };
 
 export const Products: FC<ProductsProps> = ({
-    products,
     paginatorOffset,
     numberOfProducts,
 }) => {
+    const { products } = useActiveProductsContext();
+
     const startIndex = paginatorOffset * numberOfProducts;
     const endIndex = (paginatorOffset + 1) * numberOfProducts;
     const productsToShow = products.slice(startIndex, endIndex);

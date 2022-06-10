@@ -10,6 +10,8 @@ export type Attributes = "price" | "name";
 type SortContextState = {
     order: Order;
     attr: Attributes;
+    isActive: boolean;
+    setIsActive: () => void;
     toggleOrder: () => void;
     setAttr: (payload: Attributes) => void;
 };
@@ -17,7 +19,9 @@ type SortContextState = {
 const sortContextDefaultState: SortContextState = {
     order: Order.ASCENDING,
     attr: "price",
+    isActive: false,
     /* eslint-disable @typescript-eslint/no-empty-function */
+    setIsActive: () => {},
     setAttr: () => {},
     toggleOrder: () => {},
     /* eslint-enable */

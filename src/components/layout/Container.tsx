@@ -8,8 +8,6 @@ const Root = styled.div`
         max-width: 129rem;
         margin-left: auto;
         margin-right: auto;
-        padding-left: 0;
-        padding-right: 0;
     }
 `;
 
