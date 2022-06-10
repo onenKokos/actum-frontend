@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import type { ChangeEvent, FC } from "react";
 
-import SortIcon from "../../../public/icons/sort.svg";
+import SortIcon from "../../../public/icons/Sort.svg";
 import { useSortContext } from "../../hooks";
 import { Attributes } from "../../context";
 
