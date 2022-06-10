@@ -20,7 +20,7 @@ export const ActiveProductsContextProvider: FC<
     const { attr, order } = useSortContext();
 
     useEffect(() => {
-        console.log(`Sort ${attr} in ${order} order.`);
+        // console.log(`Sort by ${attr} in ${order} order.`);
 
         const sortedArray = activeProducts.sort((a, b) => {
             if (order === Order.ASCENDING) {

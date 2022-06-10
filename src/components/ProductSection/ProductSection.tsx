@@ -21,7 +21,7 @@ const TopContainer = styled.div`
 const ContentWrapper = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         display: grid;
-        grid-template-columns: 41.8rem auto;
+        grid-template-columns: 38.8rem auto;
         grid-gap: 5rem;
     }
 `;

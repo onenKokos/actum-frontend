@@ -12,11 +12,13 @@ export const SortContextProvider: FC<SortContextProviderProps> = ({
 }) => {
     const [order, setOrder] = useState<Order>(Order.ASCENDING);
     const [attribute, setAttribute] = useState<Attributes>("price");
+    const [isActive, setActive] = useState<boolean>(false);
 
     const values = useMemo(() => {
         return {
             order,
             attr: attribute,
+            isActive,
         };
     }, [order, attribute]);
 
@@ -33,8 +35,14 @@ export const SortContextProvider: FC<SortContextProviderProps> = ({
         [attribute]
     );
 
+    const setIsActive = useCallback(() => {
+        setActive(true);
+    }, []);
+
     return (
-        <SortContext.Provider value={{ ...values, setAttr, toggleOrder }}>
+        <SortContext.Provider
+            value={{ ...values, setAttr, toggleOrder, setIsActive }}
+        >
             {children}
         </SortContext.Provider>
     );

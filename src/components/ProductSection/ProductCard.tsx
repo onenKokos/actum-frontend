@@ -16,6 +16,9 @@ const CardImageContainer = styled.div`
     position: relative;
     overflow: hidden;
     margin-bottom: 1rem;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         &:hover {
