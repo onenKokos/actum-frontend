@@ -9,8 +9,9 @@ import { DesktopFilters } from "./DesktopFilters";
 import { Products } from "./Products";
 import { MobileFilters } from "./MobileFilters";
 import { Paginator } from "./Paginator";
-import { useIsMobile } from "../../hooks";
-import { useActiveProductsContext } from "../../hooks/useActiveProductsContext";
+import { useFilterContext, useIsMobile, useProducts } from "../../hooks";
+
+import type { Product } from "../../types";
 
 const TopContainer = styled.div`
     display: flex;
@@ -21,16 +22,40 @@ const TopContainer = styled.div`
 const ContentWrapper = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.bg}) {
         display: grid;
-        grid-template-columns: 38.8rem auto;
+        grid-template-columns: 41.8rem auto;
         grid-gap: 5rem;
     }
 `;
 
-export const ProductSection: FC = () => {
-    const { products } = useActiveProductsContext();
+type ProductSectionProps = {
+    products: Product[];
+};
+
+export const ProductSection: FC<ProductSectionProps> = ({ products }) => {
     const { isMobile } = useIsMobile();
+    const { activeProducts } = useProducts(products);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const numberOfProducts = isMobile ? 4 : 6;
+    const { activeFilters, filtersOff } = useFilterContext();
+
+    let filteredProducts = [];
+    if (filtersOff) {
+        filteredProducts = activeProducts;
+    } else {
+        activeProducts.forEach((product: Product) => {
+            let match = false;
+
+            Object.keys(activeFilters).forEach((k) => {
+                if (product.category === k && activeFilters[k] === true) {
+                    match = true;
+                }
+            });
+
+            if (match) {
+                filteredProducts.push(product);
+            }
+        });
+    }
 
     const clickHandler = (input: number) => {
         if (input > -1 && input < products.length / numberOfProducts) {
@@ -55,7 +80,7 @@ export const ProductSection: FC = () => {
                     headingTwo="Price range"
                 />
                 <Products
-                    products={products}
+                    products={filteredProducts}
                     paginatorOffset={activeIndex}
                     numberOfProducts={isMobile ? 4 : 6}
                 />
@@ -63,7 +88,7 @@ export const ProductSection: FC = () => {
 
             <Paginator
                 activeIndex={activeIndex}
-                numberOfPages={products.length / numberOfProducts}
+                numberOfPages={filteredProducts.length / numberOfProducts}
                 handleChange={clickHandler}
             />
 

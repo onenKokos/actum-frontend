@@ -45,6 +45,17 @@ export const FilterContextProvider: FC<FilterContextProps> = ({ children }) => {
         [materials]
     );
 
+    const filtersOff = useMemo(() => {
+        let numberOfActiveFilters = 0;
+        Object.keys(activeFilters).forEach((k) => {
+            if (activeFilters[k] === true) {
+                numberOfActiveFilters++;
+            }
+        });
+
+        return numberOfActiveFilters === 0;
+    }, [activeFilters]);
+
     return (
         <FilterContext.Provider
             value={{
@@ -54,6 +65,7 @@ export const FilterContextProvider: FC<FilterContextProps> = ({ children }) => {
                 setFilters,
                 isMobileFilterVisible,
                 toggleMobileFilter,
+                filtersOff,
             }}
         >
             {children}

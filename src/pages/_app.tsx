@@ -8,11 +8,7 @@ import {
     CartContextProvider,
     SortContextProvider,
     FilterContextProvider,
-    ActiveProductsContextProvider,
 } from "../context";
-
-// just for testing
-import { products } from "../contants/mock";
 
 const CustomApp: FC<AppProps> = ({ Component, pageProps }) => {
     return (
@@ -22,11 +18,9 @@ const CustomApp: FC<AppProps> = ({ Component, pageProps }) => {
                 <CartContextProvider>
                     <SortContextProvider>
                         <FilterContextProvider>
-                            <ActiveProductsContextProvider products={products}>
-                                <PageLayout>
-                                    <Component {...pageProps} />
-                                </PageLayout>
-                            </ActiveProductsContextProvider>
+                            <PageLayout>
+                                <Component {...pageProps} />
+                            </PageLayout>
                         </FilterContextProvider>
                     </SortContextProvider>
                 </CartContextProvider>
