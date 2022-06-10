@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
 export const defaultMaterialsState = {
-    wood: false,
-    concrete: false,
-    brick: false,
-    glass: false,
-    steel: false,
-    carbonFiber: false,
-    copper: false,
+    WOOD: false,
+    CONCRETE: false,
+    BRICK: false,
+    GLASS: false,
+    STEEL: false,
+    CARBONFIBER: false,
+    COPPER: false,
 };
 
 export type Materials = typeof defaultMaterialsState;
@@ -25,6 +25,7 @@ type FilterContextState = {
     activeFilters: Materials;
     priceRange: number;
     isMobileFilterVisible: boolean;
+    filtersOff: boolean;
     toggleMobileFilter: () => void;
     setFilters: (payload: Materials) => void;
     setPriceRange: (payload: number) => void;
@@ -34,6 +35,7 @@ const defaultFilterContextState: FilterContextState = {
     activeFilters: defaultMaterialsState,
     priceRange: 0,
     isMobileFilterVisible: false,
+    filtersOff: false,
     /* eslint-disable @typescript-eslint/no-empty-function */
     toggleMobileFilter: () => {},
     setFilters: () => {},

@@ -3,3 +3,4 @@ export * from "./useFilterContext";
 export * from "./useSortContext";
 export * from "./useIsMobile";
 export * from "./useActiveProductsContext";
+export * from "./useProducts";
