@@ -2,6 +2,8 @@
 
 This is the frontend portion of an interview for the position of fullstack developer at ACTUM Digital.
 
+The deployed app can be seen [here](https://actum-frontend-onenkokos.vercel.app/).
+
 This repo concerns itself with tasks number one through seven.
 
 1. **Featured Product:** One of the products should have a flag that it's a featured
